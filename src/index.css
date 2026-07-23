@@ -70,8 +70,8 @@
     --status-pending: #e6b06a;
     --status-clear: #6fd99a;
     --danger: #f0776a;
-    --wash-pending: #2a2317;
-    --wash-clear: #17281f;
+    --wash-pending: #3a2c14;
+    --wash-clear: #163329;
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 26px rgba(0, 0, 0, 0.38);
     --overlay-scrim: rgba(8, 7, 5, 0.6);
@@ -267,6 +267,7 @@ button { font-family: inherit; }
   text-align: left;
   width: 100%;
   font: inherit;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 .proj-item:hover { background: var(--bg-sunken); }
 .proj-item.active {
@@ -305,6 +306,7 @@ button { font-family: inherit; }
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   font-size: 15px;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 .icon-btn:hover { background: var(--bg-sunken); color: var(--ink); }
 
@@ -331,6 +333,7 @@ button { font-family: inherit; }
   background: var(--bg-elevated);
   color: var(--ink-soft);
   cursor: pointer;
+  transition: background 0.15s ease;
 }
 .chip:hover { background: var(--bg-sunken); }
 
@@ -343,6 +346,7 @@ button { font-family: inherit; }
   background: var(--bg-elevated);
   color: var(--ink-soft);
   cursor: pointer;
+  transition: background 0.15s ease;
 }
 .ghost-btn:hover { background: var(--bg-sunken); }
 
@@ -369,6 +373,7 @@ button { font-family: inherit; }
   font-weight: 600;
   cursor: pointer;
   display: flex; align-items: center; gap: 6px;
+  transition: filter 0.15s ease;
 }
 .primary-btn:hover { filter: brightness(1.06); }
 .primary-btn:disabled { opacity: 0.6; cursor: default; }
@@ -390,6 +395,7 @@ button { font-family: inherit; }
   border-bottom: 2px solid transparent;
   background: none;
   border-top: none; border-left: none; border-right: none;
+  transition: color 0.15s ease, border-color 0.15s ease;
 }
 .type-tab:hover { color: var(--ink-soft); }
 .type-tab.active { color: var(--ink); border-bottom-color: var(--ink); }
@@ -446,6 +452,7 @@ button { font-family: inherit; }
   gap: 5px;
   text-align: left;
   width: 100%;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 .card:hover { border-color: var(--border-strong); box-shadow: var(--shadow); }
 .card.status-pending { background: var(--wash-pending); }
@@ -591,6 +598,7 @@ canvas { max-width: 100%; max-height: 62vh; touch-action: none; border-radius: 4
 .action-btn {
   border: 1px solid var(--border); background: var(--bg); color: var(--ink);
   border-radius: 7px; padding: 8px 13px; font-size: 12.5px; font-weight: 600; cursor: pointer;
+  transition: background 0.15s ease;
 }
 .action-btn:hover { background: var(--bg-sunken); }
 .action-btn.danger { color: var(--danger); border-color: var(--danger); }
@@ -633,4 +641,8 @@ canvas { max-width: 100%; max-height: 62vh; touch-action: none; border-radius: 4
   .app { grid-template-columns: 1fr; }
   .sidebar { display: none; }
   .board { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
 }

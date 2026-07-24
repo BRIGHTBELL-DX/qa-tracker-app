@@ -1,6 +1,9 @@
 import { supabase } from "../lib/supabaseClient";
+import { useTheme } from "../lib/useTheme";
 
 export default function Auth({ domainError }) {
+  const [theme, toggleTheme] = useTheme();
+
   async function signIn() {
     await supabase.auth.signInWithOAuth({
       provider: "azure",
@@ -14,8 +17,15 @@ export default function Auth({ domainError }) {
   return (
     <div className="auth-screen">
       <div className="auth-card">
-        <div className="brand-mark">Brightbell / DX QA</div>
-        <div className="brand-title">QA 트러블슈터</div>
+        <div className="brand" style={{ padding: 0, border: "none", marginBottom: 4 }}>
+          <div>
+            <div className="brand-mark">Brightbell / DX QA</div>
+            <div className="brand-title">QA 트러블슈터</div>
+          </div>
+          <button className="icon-btn" onClick={toggleTheme} title="라이트/다크 모드 전환">
+            {theme === "dark" ? "☀️" : "🌙"}
+          </button>
+        </div>
 
         {domainError && (
           <div className="auth-error" style={{ marginBottom: 14 }}>

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState, useCallback } from "react";
 import { supabase } from "../lib/supabaseClient";
+import { useTheme } from "../lib/useTheme";
 import { listProjects, createProject, listIssues, subscribeIssues, getSignedUrl } from "../lib/db";
 import IssueModal from "./IssueModal";
 import ReworkModal from "./ReworkModal";
@@ -10,19 +11,6 @@ const STATUS_COLS = [
   { key: "pending", label: "검수대기", color: "var(--status-pending)" },
   { key: "clear", label: "클리어", color: "var(--status-clear)" },
 ];
-
-function useTheme() {
-  const [mode, setMode] = useState(() => {
-    const stored = localStorage.getItem("qa-theme");
-    if (stored === "light" || stored === "dark") return stored;
-    return window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  });
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", mode);
-    localStorage.setItem("qa-theme", mode);
-  }, [mode]);
-  return [mode, () => setMode((m) => (m === "dark" ? "light" : "dark"))];
-}
 
 export default function Board({ session }) {
   const [theme, toggleTheme] = useTheme();
